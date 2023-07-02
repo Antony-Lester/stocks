@@ -2,7 +2,7 @@
 import {describe, expect, test} from '@jest/globals';
 import time from '../../metrics/time';
 
-describe('converts date string to 0-1 time', () => {
+describe('converts date string to 0-1 time metric', () => {
   test('returns a valid metric', () => {
     expect(time('2015-12-22T00:00:00Z')).toBeGreaterThanOrEqual(0);
     expect(time('2015-12-22T23:59:59Z')).toBeLessThanOrEqual(1);
