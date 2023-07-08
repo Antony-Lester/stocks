@@ -7,10 +7,10 @@ describe('converts date string to 0-1 time metric', () => {
     expect(time('2015-12-22T00:00:00Z')).toBeGreaterThanOrEqual(0);
     expect(time('2015-12-22T23:59:59Z')).toBeLessThanOrEqual(1);
   });
-  test('returns null if passed a non valid metric', () => {
+  test('returns nan if passed a non valid metric', () => {
     expect(time('test')).toBe(NaN);
   });
-  test('returns null if passed a empty String', () => {
+  test('returns nan if passed a empty String', () => {
     expect(time('')).toBe(NaN);
   });
 });
