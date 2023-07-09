@@ -1,5 +1,5 @@
 // eslint-disable-next-line node/no-unpublished-import, node/no-extraneous-import
-import {describe, expect, test, beforeEach, afterAll} from '@jest/globals';
+import {describe, expect, test} from '@jest/globals';
 import createTickersTable from '../../../controllers/create/createTickersTable';
 
 import db from '../../../db/connection';

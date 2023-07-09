@@ -1,9 +1,7 @@
-import format from 'pg-format';
-import db from './connection';
-import {devDataInterface} from './data/development-data';
+import {DataInterface} from './data/development-data';
 import createTickersTable from '../controllers/create/createTickersTable';
 
-export default async function (data: devDataInterface) {
+export default async function (data: DataInterface) {
   const {tickersData} = data;
   //=== Drop Tables =====
 

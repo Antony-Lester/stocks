@@ -2,7 +2,7 @@ import tickersData from './tickers';
 
 export default {tickersData};
 
-export interface devDataInterface {
+export interface DataInterface {
   tickersData: tickersDataInterface;
 }
 
