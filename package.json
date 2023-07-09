@@ -1,20 +1,31 @@
 {
   "devDependencies": {
     "@types/node": "^14.11.2",
+    "@types/pg": "^8.10.2",
+    "@types/pg-format": "^1.0.2",
     "gts": "^3.1.1",
     "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.1",
     "typescript": "~4.7.0"
   },
   "scripts": {
-    "build": "npx tsc",
-    "build-watch": "npx tsc -w",
-    "lint": "gts lint",
-    "clean": "gts clean",
-    "compile": "tsc",
-    "fix": "gts fix",
-    "prepare": "npm run compile",
-    "pretest": "npm run compile",
-    "posttest": "npm run lint",
-    "test": "jest"
+    "build": "clear; npx tsc",
+    "build-watch": "clear; npx tsc -w",
+    "lint": "clear; gts lint --fix",
+    "clean": "clear; gts clean",
+    "compile": "clear; tsc",
+    "fix": "clear; gts fix",
+    "prepare": "clear; npm run compile",
+    "pretest": "clear; npm run compile",
+    "posttest": "clear; npm run lint",
+    "test": "clear; jest",
+    "seed": "clear; npx tsc; node build/src/db/run-seed.js",
+    "setup": "clear; npx tsc; node build/src/db/run-setup.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "node-pg-format": "^1.3.5",
+    "pg": "^8.11.1",
+    "pg-format": "^1.0.4"
   }
 }
