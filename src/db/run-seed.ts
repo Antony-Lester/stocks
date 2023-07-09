@@ -1,10 +1,10 @@
-import devData from './data/development-data/index.js';
-import seed from './seed.js';
-import db from './connection.js';
+import devData, {devDataInterface} from './data/development-data/index';
+import seed from './seed';
+//import db from './connection';
 
-const runSeed = async () => {
-  await seed(devData);
-  return await db.end();
+export const runSeed = async (data: devDataInterface) => {
+  await seed(data);
+  //return await db.end();
 };
 
-runSeed();
+runSeed(devData);

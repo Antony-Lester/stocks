@@ -11,16 +11,17 @@
   "scripts": {
     "build": "clear; npx tsc",
     "build-watch": "clear; npx tsc -w",
-    "lint": "clear; gts lint --fix",
-    "clean": "clear; gts clean",
-    "compile": "clear; tsc",
+    "lint": "clear; npx prettier . --write; gts lint --fix",
+    "clean": "gts clean",
+    "compile": "tsc",
     "fix": "clear; gts fix",
-    "prepare": "clear; npm run compile",
-    "pretest": "clear; npm run compile",
-    "posttest": "clear; npm run lint",
+    "prepare": "npm run lint",
+    "pretest": "npm run compile",
+    "posttest": "",
     "test": "clear; jest",
-    "seed": "clear; npx tsc; node build/src/db/run-seed.js",
-    "setup": "clear; npx tsc; node build/src/db/run-setup.js"
+    "seed": " node /src/db/run-seed.ts",
+    "database-test": "psql -U antony -d stocks_test",
+    "database": "psql -U antony -d stocks"
   },
   "dependencies": {
     "dotenv": "^16.3.1",

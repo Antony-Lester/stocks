@@ -2,7 +2,7 @@ import tickersData from './tickers';
 
 export default {tickersData};
 
-export interface devDataInterface {
+export interface testDataInterface {
   tickersData: tickersDataInterface;
 }
 
@@ -21,7 +21,7 @@ export interface tickerDataInterface {
   easy_to_borrow: boolean;
   fractionable: boolean;
   attributes: Array<string>;
-  min_order_size?: number;
-  min_trade_increment?: number;
-  price_increment?: number;
+  min_order_size?: string;
+  min_trade_increment?: string;
+  price_increment?: string;
 }
