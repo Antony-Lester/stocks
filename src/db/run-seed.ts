@@ -1,8 +1,8 @@
-import devData, {devDataInterface} from './data/development-data/index';
+import devData, {DataInterface} from './data/development-data/index';
 import seed from './seed';
 //import db from './connection';
 
-export const runSeed = async (data: devDataInterface) => {
+export const runSeed = async (data: DataInterface) => {
   await seed(data);
   //return await db.end();
 };

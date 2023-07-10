@@ -18,7 +18,7 @@
     "prepare": "npm run lint",
     "pretest": "npm run compile",
     "posttest": "",
-    "test": "clear; jest",
+    "test": "npx tsc; clear; jest",
     "seed": " node /src/db/run-seed.ts",
     "database-test": "psql -U antony -d stocks_test",
     "database": "psql -U antony -d stocks"

@@ -22,12 +22,12 @@ const columnNames = [
   'price_increment',
 ];
 const columnTypes = [
-  'character',
-  'character',
-  'character',
-  'character varying',
-  'character',
-  'character',
+  'text',
+  'text',
+  'text',
+  'text',
+  'text',
+  'text',
   'boolean',
   'boolean',
   'boolean',
@@ -38,7 +38,6 @@ const columnTypes = [
   'numeric',
   'numeric',
 ];
-
 const columnDefaults = [
   null,
   null,
@@ -56,7 +55,6 @@ const columnDefaults = [
   null,
   null,
 ];
-
 const columnNulable = [
   'NO',
   'NO',
@@ -74,6 +72,8 @@ const columnNulable = [
   'YES',
   'YES',
 ];
+
+//TODO after All drop table
 
 describe('create tickers table', () => {
   test('creates a table named tickers with named colums', async () => {
