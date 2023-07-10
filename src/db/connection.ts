@@ -6,11 +6,18 @@ import {Pool} from 'pg';
 
 //{path: 'stocks', max: 2}
 
-const config = {
+const config_test = {
   user: 'postgres',
   database: 'stocks_test',
   password: 'password',
   port: 5432,
   host: 'localhost',
 };
-export default new Pool(config);
+const config_prod = {
+  user: 'postgres',
+  database: 'stocks',
+  password: 'password',
+  port: 5432,
+  host: 'localhost',
+};
+export default new Pool(config_test);

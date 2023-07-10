@@ -1,6 +1,7 @@
 import {tickersDataInterface} from '../../db/data/development-data';
 import db from '../../db/connection';
 import format from 'pg-format';
+import createTickersTable from '../create/createTickersTable';
 
 export default async function populateTickersTable(
   tickersData: tickersDataInterface
@@ -110,9 +111,12 @@ export default async function populateTickersTable(
   const populateTickersTablePromise = db
     .query(format(populateTickersTableQueryStr, populateTickersTableData))
     .then(r => r.rows)
-    .catch(e => {
+    .catch(async e => {
       if (e.code === '23502' || e.code === '42601') {
         Promise.resolve(null);
+      } else if (e.code === '42P01') {
+        await createTickersTable();
+        await populateTickersTable(tickersData);
       } else {
         console.error(e);
       }

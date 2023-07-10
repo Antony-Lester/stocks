@@ -1,9 +1,9 @@
 // eslint-disable-next-line node/no-unpublished-import, node/no-extraneous-import
-import {describe, expect, test} from '@jest/globals';
+import {describe, expect, test, afterEach} from '@jest/globals';
 import createTickersTable from '../../../controllers/create/createTickersTable';
 
 import db from '../../../db/connection';
-
+import dropTable from '../../../controllers/drop/dropTable';
 const columnNames = [
   'ticker',
   'exchange',
@@ -73,7 +73,9 @@ const columnNulable = [
   'YES',
 ];
 
-//TODO after All drop table
+afterEach(async () => {
+  await dropTable('tickers');
+});
 
 describe('create tickers table', () => {
   test('creates a table named tickers with named colums', async () => {

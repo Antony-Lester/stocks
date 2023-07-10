@@ -1,10 +1,11 @@
 // eslint-disable-next-line node/no-unpublished-import, node/no-extraneous-import
-import {describe, expect, test} from '@jest/globals';
+import {describe, expect, test, afterAll} from '@jest/globals';
 import createTickersTable from '../../../controllers/create/createTickersTable';
 
 import db from '../../../db/connection';
 import populateTickersTable from '../../../controllers/populate/populateTickersTable';
 import data from '../../../db/data/test-data/index';
+import dropTable from '../../../controllers/drop/dropTable';
 const firstRow = {
   ticker: 'AAAAA',
   exchange: 'AAAAA',
@@ -41,7 +42,9 @@ const secondRow = {
 };
 const thirdRow = undefined;
 
-//TODO after All drop table
+afterAll(async () => {
+  await dropTable('tickers');
+});
 
 describe('populate tickers table', () => {
   test('populates a table named tickers with data provided', async () => {
