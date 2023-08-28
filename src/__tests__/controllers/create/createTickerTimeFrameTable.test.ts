@@ -52,7 +52,12 @@ const columnNames: Array<String> = [
   'result_short_5',
 ];
 const columnTypes = [
-  'text',
+  'timestamp with time zone',
+  'numeric',
+  'numeric',
+  'numeric',
+  'numeric',
+  'numeric',
   'numeric',
   'numeric',
   'numeric',

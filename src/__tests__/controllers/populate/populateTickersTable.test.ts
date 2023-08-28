@@ -4,7 +4,7 @@ import createTickersTable from '../../../controllers/create/createTickersTable';
 
 import db from '../../../db/connection';
 import populateTickersTable from '../../../controllers/populate/populateTickersTable';
-import data from '../../../db/data/test-data/index';
+import {tickersData} from '../../../db/data/test-data/index';
 import dropTable from '../../../controllers/drop/dropTable';
 const firstRow = {
   ticker: 'AAAAA',
@@ -53,7 +53,7 @@ describe('populate tickers table', () => {
       client.query('BEGIN');
 
       await createTickersTable();
-      await populateTickersTable([data.tickersData[0]]);
+      await populateTickersTable([tickersData[0]]);
       await client.query('SELECT * FROM tickers;').then(data => {
         expect(data.rows[0]).toEqual(firstRow);
       });
@@ -69,7 +69,7 @@ describe('populate tickers table', () => {
       client.query('BEGIN');
 
       await createTickersTable();
-      await populateTickersTable([data.tickersData[1]]);
+      await populateTickersTable([tickersData[1]]);
       await client.query('SELECT * FROM tickers;').then(data => {
         expect(data.rows[1]).toEqual(secondRow);
       });
@@ -85,7 +85,7 @@ describe('populate tickers table', () => {
       client.query('BEGIN');
 
       await createTickersTable();
-      await populateTickersTable([data.tickersData[2]]);
+      await populateTickersTable([tickersData[2]]);
       await client.query('SELECT * FROM tickers;').then(data => {
         expect(data.rows[2]).toEqual(thirdRow);
       });

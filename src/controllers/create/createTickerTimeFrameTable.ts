@@ -2,7 +2,7 @@ import db from '../../db/connection';
 
 export default async function createTickerTimeFrameTable(name: string) {
   const query = `CREATE TABLE IF NOT EXISTS ${name} (
-    timeStamp TEXT PRIMARY KEY,
+    timestamp TIMESTAMP WITH TIME ZONE PRIMARY KEY,
     open DECIMAL NOT NULL,
     low DECIMAL NOT NULL,
     high DECIMAL NOT NULL,

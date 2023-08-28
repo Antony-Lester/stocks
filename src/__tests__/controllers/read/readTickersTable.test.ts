@@ -4,7 +4,7 @@ import createTickersTable from '../../../controllers/create/createTickersTable';
 
 import db from '../../../db/connection';
 import populateTickersTable from '../../../controllers/populate/populateTickersTable';
-import data from '../../../db/data/test-data/index';
+import {tickersData} from '../../../db/data/test-data/index';
 import dropTable from '../../../controllers/drop/dropTable';
 import readTickersTable from '../../../controllers/read/readTickersTable';
 const firstRow = {
@@ -36,7 +36,7 @@ describe('read tickers table', () => {
       client.query('BEGIN');
 
       await createTickersTable();
-      await populateTickersTable([data.tickersData[0]]);
+      await populateTickersTable([tickersData[0]]);
       await readTickersTable().then(data => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
