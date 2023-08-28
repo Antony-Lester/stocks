@@ -4,17 +4,17 @@ import createTickerTimeFrameTable from '../create/createTickerTimeFrameTable';
 
 export default async function populateTickerTimeFrameTable(
   name: string,
-  populateTickerTimeFrameTableData: dataPointBaseType
+  data: dataPointBaseType
 ) {
   const populateTickerTimeFrameTableQueryStr = `INSERT INTO ${name} 
   (timestamp, open, high, low, close, vol)
   VALUES (
-    '${populateTickerTimeFrameTableData.timestamp}',
-    ${populateTickerTimeFrameTableData.open},
-    ${populateTickerTimeFrameTableData.high},
-    ${populateTickerTimeFrameTableData.low},
-    ${populateTickerTimeFrameTableData.close},
-    ${populateTickerTimeFrameTableData.vol}
+    '${data.timestamp}',
+    ${data.open},
+    ${data.high},
+    ${data.low},
+    ${data.close},
+    ${data.vol}
   );`;
   const populateTickerTimeFrameTablePromise = db
     .query(populateTickerTimeFrameTableQueryStr)
@@ -23,10 +23,7 @@ export default async function populateTickerTimeFrameTable(
         Promise.resolve(null);
       } else if (e.code === '42P01') {
         await createTickerTimeFrameTable(name);
-        await populateTickerTimeFrameTable(
-          name,
-          populateTickerTimeFrameTableData
-        );
+        await populateTickerTimeFrameTable(name, data);
       } else {
         console.error(e);
       }

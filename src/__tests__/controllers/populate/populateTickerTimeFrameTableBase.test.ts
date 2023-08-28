@@ -5,7 +5,7 @@ import db from '../../../db/connection';
 
 import dropTable from '../../../controllers/drop/dropTable';
 import createTickerTimeFrameTable from '../../../controllers/create/createTickerTimeFrameTable';
-import populateTickerTimeFrameTable from '../../../controllers/populate/populateTickerTimeFrameTable';
+import populateTickerTimeFrameTable from '../../../controllers/populate/populateTickerTimeFrameTableBase';
 import {dataPointBase} from '../../../db/data/test-data';
 
 describe('populate ticker time frame table', () => {
@@ -37,5 +37,5 @@ describe('populate ticker time frame table', () => {
     } finally {
       client.release();
     }
-  }, 30000);
+  }, 10000);
 });
