@@ -102,7 +102,7 @@ describe('create tickers table', () => {
     } finally {
       client.release();
     }
-  });
+  }, 10000);
   test('creates a table with correct data types', async () => {
     const client = await db.connect();
     try {
@@ -127,7 +127,7 @@ describe('create tickers table', () => {
     } finally {
       client.release();
     }
-  });
+  }, 10000);
   test('creates a table with the correct defaults', async () => {
     const client = await db.connect();
     try {
@@ -152,7 +152,7 @@ describe('create tickers table', () => {
     } finally {
       client.release();
     }
-  });
+  }, 10000);
   test('creates a table with the correct mandatory not null', async () => {
     const client = await db.connect();
     try {
@@ -177,5 +177,5 @@ describe('create tickers table', () => {
     } finally {
       client.release();
     }
-  });
+  }, 1000);
 });

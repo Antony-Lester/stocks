@@ -6,6 +6,7 @@ import db from '../../../db/connection';
 import populateTickersTable from '../../../controllers/populate/populateTickersTable';
 import data from '../../../db/data/test-data/index';
 import dropTable from '../../../controllers/drop/dropTable';
+import readTickersTable from '../../../controllers/read/readTickersTable';
 const firstRow = {
   ticker: 'AAAAA',
   exchange: 'AAAAA',
@@ -23,73 +24,56 @@ const firstRow = {
   min_trade_increment: null,
   price_increment: null,
 };
-const secondRow = {
-  class: null,
-  easy_to_borrow: false,
-  exchange: 'BBB',
-  fractionable: false,
-  id: '2',
-  maintenance_margin_requirement: '20',
-  marginable: false,
-  min_order_size: null,
-  min_trade_increment: null,
-  name: 'b name',
-  price_increment: null,
-  shortable: false,
-  status: 'active',
-  ticker: 'BBBB',
-  tradable: false,
-};
-const thirdRow = undefined;
 
 afterAll(async () => {
   await dropTable('tickers');
 });
 
-describe('populate tickers table', () => {
-  test('populates a table named tickers with data provided', async () => {
+describe('read tickers table', () => {
+  test('returns rows of tickers table', async () => {
     const client = await db.connect();
     try {
       client.query('BEGIN');
 
       await createTickersTable();
       await populateTickersTable([data.tickersData[0]]);
-      await client.query('SELECT * FROM tickers;').then(data => {
-        expect(data.rows[0]).toEqual(firstRow);
+      await readTickersTable().then(data => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        expect(data).toEqual([firstRow]);
       });
-
+      await dropTable('tickers');
       await client.query('ROLLBACK');
     } finally {
       client.release();
     }
   }, 10000);
-  test('handles null with default values', async () => {
+  test('returns null if table missing', async () => {
     const client = await db.connect();
     try {
       client.query('BEGIN');
-
-      await createTickersTable();
-      await populateTickersTable([data.tickersData[1]]);
-      await client.query('SELECT * FROM tickers;').then(data => {
-        expect(data.rows[1]).toEqual(secondRow);
+      await readTickersTable().then(data => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        expect(data).toBe(null);
       });
-
+      await dropTable('tickers');
       await client.query('ROLLBACK');
     } finally {
       client.release();
     }
   }, 10000);
-  test('handle entries that are null and mandatory', async () => {
+  test('returns null if table is empty', async () => {
     const client = await db.connect();
     try {
       client.query('BEGIN');
-
       await createTickersTable();
-      await populateTickersTable([data.tickersData[2]]);
-      await client.query('SELECT * FROM tickers;').then(data => {
-        expect(data.rows[2]).toEqual(thirdRow);
+      await readTickersTable().then(data => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        expect(data).toBe(null);
       });
-
+      await dropTable('tickers');
       await client.query('ROLLBACK');
     } finally {
       client.release();

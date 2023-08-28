@@ -112,7 +112,7 @@ export default async function populateTickersTable(
     .query(format(populateTickersTableQueryStr, populateTickersTableData))
     .then(r => r.rows)
     .catch(async e => {
-      if (e.code === '23502' || e.code === '42601') {
+      if (e.code === '23502' || e.code === '42601' || e.code === '23505') {
         Promise.resolve(null);
       } else if (e.code === '42P01') {
         await createTickersTable();

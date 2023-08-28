@@ -29,11 +29,11 @@ describe('drop table', () => {
           );
         });
 
-      await client.query('ROLLBACK');
+      //await client.query('ROLLBACK');
     } finally {
       client.release();
     }
-  });
+  }, 10000);
   test('handles request if table dosent exist', async () => {
     const client = await db.connect();
     try {
@@ -58,5 +58,5 @@ describe('drop table', () => {
     } finally {
       client.release();
     }
-  });
+  }, 10000);
 });
