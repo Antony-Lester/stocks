@@ -10,9 +10,16 @@ export {
   tickerDataInterface,
   tickersDataInterface,
 };
-import {dataPointBase, dataPointBaseType} from './dataPoint/base';
+
+import {
+  dataPointBase,
+  dataPointBaseType,
+  dataPointInterface,
+  dataPointsInterface,
+} from './dataPoint/base';
 import {dataPointMetric, dataPointMetricType} from './dataPoint/metric';
 import {dataPointResult, dataPointResultType} from './dataPoint/result';
+
 export {
   dataPointBase,
   dataPointBaseType,
@@ -20,4 +27,6 @@ export {
   dataPointMetricType,
   dataPointResult,
   dataPointResultType,
+  dataPointInterface,
+  dataPointsInterface,
 };
