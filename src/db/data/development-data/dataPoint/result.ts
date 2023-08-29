@@ -1,6 +1,6 @@
 export const dataPointResult = {
   timestamp: '2020-01-01T01:01:01.001Z',
-  result_long_1: 1,
+  result_long_1: 1.0,
   result_long_2: 0.333333329,
   result_long_3: 0.899999996,
   result_long_4: 0.766666663,
@@ -19,19 +19,19 @@ export const dataPointResult = {
 
 export interface dataPointResultType {
   timestamp: string;
-  result_long_1?: number | null;
-  result_long_2?: number | null;
-  result_long_3?: number | null;
-  result_long_4?: number | null;
-  result_long_5?: number | null;
-  result_real_1?: number | null;
-  result_real_2?: number | null;
-  result_real_3?: number | null;
-  result_real_4?: number | null;
-  result_real_5?: number | null;
-  result_short_1?: number | null;
-  result_short_2?: number | null;
-  result_short_3?: number | null;
-  result_short_4?: number | null;
-  result_short_5?: number | null;
+  result_long_1?: number;
+  result_long_2?: number;
+  result_long_3?: number;
+  result_long_4?: number;
+  result_long_5?: number;
+  result_real_1?: number;
+  result_real_2?: number;
+  result_real_3?: number;
+  result_real_4?: number;
+  result_real_5?: number;
+  result_short_1?: number;
+  result_short_2?: number;
+  result_short_3?: number;
+  result_short_4?: number;
+  result_short_5?: number;
 }

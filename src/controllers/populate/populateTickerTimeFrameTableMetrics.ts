@@ -1,6 +1,5 @@
 import db from '../../db/connection';
 import {dataPointMetricType} from '../../db/data/test-data';
-import createTickerTimeFrameTable from '../create/createTickerTimeFrameTable';
 
 export default async function populateTickerTimeFrameTable(
   name: string,
@@ -33,7 +32,6 @@ export default async function populateTickerTimeFrameTable(
     metric_td_r = ${data.metric_td_r}
   WHERE
     timestamp = '${data.timestamp}'
-
   ;`;
   const populateTickerTimeFrameTablePromise = db
     .query(populateTickerTimeFrameTableQueryStr)
