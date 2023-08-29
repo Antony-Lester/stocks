@@ -1,5 +1,5 @@
 import db from '../../db/connection';
-import {tickersDataInterface} from '../../db/data/development-data';
+import {tickersDataInterface} from '../../db/data/test-data';
 
 export default async function readTickersTable(): Promise<tickersDataInterface | null> {
   try {

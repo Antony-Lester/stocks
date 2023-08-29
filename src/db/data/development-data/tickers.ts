@@ -1,8 +1,9 @@
 export interface tickerDataInterface {
+  ticker?: string;
   id: string | null;
   class: string | null;
   exchange: string;
-  symbol: string;
+  symbol?: string;
   name: string | null;
   status: string | null;
   tradable: boolean | null;
