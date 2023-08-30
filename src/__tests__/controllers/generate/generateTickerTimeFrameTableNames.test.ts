@@ -26,39 +26,178 @@ const correctResult = [
   'OTCxxxxxxxxxx_CAJPYxxxxxxxxxxx_1Day',
 ];
 
-describe('read tickers table', () => {
-  test('returns rows of tickers table', async () => {
+describe('generateTickerTimeFrameTableNames', () => {
+  test('returns array of timeframes', async () => {
     const client = await db.connect();
     try {
       client.query('BEGIN');
       await createTickersTable();
       await populateTickersTable(tickersData);
       const result = await generateTickerTimeFrameTableNames();
-      expect(result).toEqual(correctResult);
+      expect(Array.isArray(result)).toBe(true);
+      await dropTable('tickers');
+      await client.query('ROLLBACK');
+    } finally {
+      client.release();
+    }
+  }, 10000);
+  test('results are in A-Z order', async () => {
+    const client = await db.connect();
+    try {
+      client.query('BEGIN');
+      await createTickersTable();
+      await populateTickersTable(tickersData);
+      const result = await generateTickerTimeFrameTableNames();
+      expect(result).toEqual(correctResult.sort());
+      await dropTable('tickers');
+      await client.query('ROLLBACK');
+    } finally {
+      client.release();
+    }
+  }, 10000);
+  test('can filter by single exchange string', async () => {
+    const client = await db.connect();
+    try {
+      client.query('BEGIN');
+      await createTickersTable();
+      await populateTickersTable(tickersData);
+      const result = await generateTickerTimeFrameTableNames('OTCxxxxxxxxxx');
+      expect(result).toEqual(correctResult.slice(10).sort());
       await dropTable('tickers');
       client.query('ROLLBACK');
     } finally {
       client.release();
     }
   }, 10000);
-  test('returns null if table missing', async () => {
+  test('can filter by single ticker string', async () => {
     const client = await db.connect();
     try {
       client.query('BEGIN');
-      const result = await generateTickerTimeFrameTableNames();
-      expect(result).toBe(null);
+      await createTickersTable();
+      await populateTickersTable(tickersData);
+      const result = await generateTickerTimeFrameTableNames('AAAAA');
+      expect(result).toEqual(correctResult.slice(0, 5).sort());
+      await dropTable('tickers');
       client.query('ROLLBACK');
     } finally {
       client.release();
     }
   }, 10000);
-  test('returns null if table is empty', async () => {
+  test('can filter by single timeframe string', async () => {
+    const client = await db.connect();
+    try {
+      client.query('BEGIN');
+      await createTickersTable();
+      await populateTickersTable(tickersData);
+      const result = await generateTickerTimeFrameTableNames('1Min');
+      expect(result).toEqual(
+        [correctResult[1], correctResult[6], correctResult[11]].sort()
+      );
+      await dropTable('tickers');
+      client.query('ROLLBACK');
+    } finally {
+      client.release();
+    }
+  }, 10000);
+  test('can filter by mutiple exchange array', async () => {
+    const client = await db.connect();
+    try {
+      client.query('BEGIN');
+      await createTickersTable();
+      await populateTickersTable(tickersData);
+      const result = await generateTickerTimeFrameTableNames([
+        'OTCxxxxxxxxxx',
+        'BBB',
+      ]);
+      expect(result).toEqual(correctResult.slice(5).sort());
+      await dropTable('tickers');
+      client.query('ROLLBACK');
+    } finally {
+      client.release();
+    }
+  }, 10000);
+  test('can filter by mutiple ticker array', async () => {
+    const client = await db.connect();
+    try {
+      client.query('BEGIN');
+      await createTickersTable();
+      await populateTickersTable(tickersData);
+      const result = await generateTickerTimeFrameTableNames([
+        'CAJPYxxxxxxxxxxx',
+        'BBBB',
+      ]);
+      expect(result).toEqual(correctResult.slice(5).sort());
+      await dropTable('tickers');
+      client.query('ROLLBACK');
+    } finally {
+      client.release();
+    }
+  }, 10000);
+  test('can filter by mutiple timeframe array', async () => {
+    const client = await db.connect();
+    try {
+      client.query('BEGIN');
+      await createTickersTable();
+      await populateTickersTable(tickersData);
+      const result = await generateTickerTimeFrameTableNames(['1Min', '5Min']);
+      expect(result).toEqual(
+        [
+          'AAAAA_AAAAA_1Min',
+          'AAAAA_AAAAA_5Min',
+          'BBB_BBBB_1Min',
+          'BBB_BBBB_5Min',
+          'OTCxxxxxxxxxx_CAJPYxxxxxxxxxxx_1Min',
+          'OTCxxxxxxxxxx_CAJPYxxxxxxxxxxx_5Min',
+        ].sort()
+      );
+      await dropTable('tickers');
+      client.query('ROLLBACK');
+    } finally {
+      client.release();
+    }
+  }, 10000);
+  test('can use mutiple filters array', async () => {
+    const client = await db.connect();
+    try {
+      client.query('BEGIN');
+      await createTickersTable();
+      await populateTickersTable(tickersData);
+      const result = await generateTickerTimeFrameTableNames(['AAAAA', '5Min']);
+      expect(result).toEqual(
+        [
+          'AAAAA_AAAAA_1Min',
+          'AAAAA_AAAAA_5Min',
+          'AAAAA_AAAAA_30Min',
+          'AAAAA_AAAAA_2Hour',
+          'AAAAA_AAAAA_1Day',
+          'BBB_BBBB_5Min',
+          'OTCxxxxxxxxxx_CAJPYxxxxxxxxxxx_5Min',
+        ].sort()
+      );
+      await dropTable('tickers');
+      client.query('ROLLBACK');
+    } finally {
+      client.release();
+    }
+  }, 10000);
+  test('returns undefined if table missing', async () => {
+    const client = await db.connect();
+    try {
+      client.query('BEGIN');
+      const result = await generateTickerTimeFrameTableNames();
+      expect(result).toBe(undefined);
+      client.query('ROLLBACK');
+    } finally {
+      client.release();
+    }
+  }, 10000);
+  test('returns undefined if table is empty', async () => {
     const client = await db.connect();
     try {
       client.query('BEGIN');
       await createTickersTable();
       const result = await generateTickerTimeFrameTableNames();
-      expect(result).toBe(null);
+      expect(result).toBe(undefined);
       await dropTable('tickers');
       client.query('ROLLBACK');
     } finally {
