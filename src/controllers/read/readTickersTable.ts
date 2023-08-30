@@ -4,7 +4,7 @@ import {tickersDataInterface} from '../../db/data/test-data';
 export default async function readTickersTable(): Promise<tickersDataInterface | null> {
   try {
     return await db
-      .query('SELECT * FROM tickers')
+      .query('SELECT * FROM tickers;')
       .then(data => data.rows)
       .then(data => (data.length ? data : null));
   } catch {

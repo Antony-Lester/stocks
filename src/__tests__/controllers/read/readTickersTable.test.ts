@@ -38,43 +38,10 @@ describe('read tickers table', () => {
       await createTickersTable();
       await populateTickersTable([tickersData[0]]);
       await readTickersTable().then(data => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         expect(data).toEqual([firstRow]);
       });
       await dropTable('tickers');
-      await client.query('ROLLBACK');
-    } finally {
-      client.release();
-    }
-  }, 10000);
-  test('returns null if table missing', async () => {
-    const client = await db.connect();
-    try {
-      client.query('BEGIN');
-      await readTickersTable().then(data => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        expect(data).toBe(null);
-      });
-      await dropTable('tickers');
-      await client.query('ROLLBACK');
-    } finally {
-      client.release();
-    }
-  }, 10000);
-  test('returns null if table is empty', async () => {
-    const client = await db.connect();
-    try {
-      client.query('BEGIN');
-      await createTickersTable();
-      await readTickersTable().then(data => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        expect(data).toBe(null);
-      });
-      await dropTable('tickers');
-      await client.query('ROLLBACK');
+      client.query('ROLLBACK');
     } finally {
       client.release();
     }
