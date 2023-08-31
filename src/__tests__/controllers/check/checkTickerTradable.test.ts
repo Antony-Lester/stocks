@@ -9,8 +9,8 @@ import populateTickersTable from '../../../controllers/populate/populateTickersT
 import dropTable from '../../../controllers/drop/dropTable';
 import checkTickerTradable from '../../../controllers/check/checkTickerTradable';
 
-describe('check Ticker Id', () => {
-  test('returns Id string if valid', async () => {
+describe('check Ticker Tradable', () => {
+  test('returns Tradable string if valid', async () => {
     const client = await db.connect();
     try {
       client.query('BEGIN');
@@ -18,7 +18,7 @@ describe('check Ticker Id', () => {
       await createTickersTable();
       await populateTickersTable(tickersData);
       await checkTickerTradable('CAJPY').then(data => {
-        expect(data).toBe('active');
+        expect(data).toBe(false);
       });
       await dropTable('tickers');
       client.query('ROLLBACK');

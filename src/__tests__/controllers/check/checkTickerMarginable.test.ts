@@ -7,18 +7,18 @@ import {tickersData} from '../../../db/data/development-data';
 import createTickersTable from '../../../controllers/create/createTickersTable';
 import populateTickersTable from '../../../controllers/populate/populateTickersTable';
 import dropTable from '../../../controllers/drop/dropTable';
-import checkTickerClass from '../../../controllers/check/checkTickerClass';
+import checkTickerMarginable from '../../../controllers/check/checkTickerMarginable';
 
-describe('check Ticker Class', () => {
-  test('returns Class string if valid', async () => {
+describe('check Ticker Marginable', () => {
+  test('returns Marginable string if valid', async () => {
     const client = await db.connect();
     try {
       client.query('BEGIN');
 
       await createTickersTable();
       await populateTickersTable(tickersData);
-      await checkTickerClass('CAJPY').then(data => {
-        expect(data).toBe('us_equity');
+      await checkTickerMarginable('CAJPY').then(data => {
+        expect(data).toBe(false);
       });
       await dropTable('tickers');
       client.query('ROLLBACK');
@@ -33,7 +33,7 @@ describe('check Ticker Class', () => {
 
       await createTickersTable();
       await populateTickersTable(tickersData);
-      await checkTickerClass('TEST').then(data => {
+      await checkTickerMarginable('TEST').then(data => {
         expect(data).toBe(undefined);
       });
       await dropTable('tickers');

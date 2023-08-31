@@ -9,8 +9,8 @@ import populateTickersTable from '../../../controllers/populate/populateTickersT
 import dropTable from '../../../controllers/drop/dropTable';
 import checkTickerStatus from '../../../controllers/check/checkTickerStatus';
 
-describe('check Ticker Id', () => {
-  test('returns Id string if valid', async () => {
+describe('check Ticker Status', () => {
+  test('returns Status string if valid', async () => {
     const client = await db.connect();
     try {
       client.query('BEGIN');
