@@ -18,7 +18,9 @@ describe('check Ticker Id', () => {
       await createTickersTable();
       await populateTickersTable(tickersData);
       await checkTickerName('CAJPY').then(data => {
-        expect(data).toBe('OTC');
+        expect(data).toBe(
+          'Canon Inc. American Depositary Receipts - Sponsored'
+        );
       });
       await dropTable('tickers');
       client.query('ROLLBACK');
