@@ -25,7 +25,7 @@ export default async function populateTickersTable(
         ) VALUES %L RETURNING * ;`;
 
   const populateTickersTableData = tickersData
-    .map(data => {
+    ?.map(data => {
       if (data.symbol === null || data.exchange === null) {
         return null;
       }

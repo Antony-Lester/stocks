@@ -61,7 +61,7 @@ export const tickersData = [
     symbol: 'LYLTQ',
     name: 'LOYALTY VENTURES INC COM (Delaware)',
     status: 'active',
-    tradable: false,
+    tradable: true,
     marginable: false,
     maintenance_margin_requirement: 100,
     shortable: false,

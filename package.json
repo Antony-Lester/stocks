@@ -20,7 +20,7 @@
     "pretest": "npm run compile",
     "posttest": "",
     "test": "npx tsc;clear; npx prettier . --write; gts lint --fix; clear; jest --runInBand --no-cache --forceExit",
-    "test-watch": "clear; npm run test-clean;jest --runInBand --watchAll --no-cache --forceExit",
+    "test-watch": "jest --runInBand --watchAll --no-cache --forceExit",
     "test-clean": "jest --clearCache; clear",
     "test-coverage": "jest --coverage",
     "test-debug": "node --inspect-brk node_modules/.bin/jest --runInBand --detectOpenHandles --no-cache --forceExit",
