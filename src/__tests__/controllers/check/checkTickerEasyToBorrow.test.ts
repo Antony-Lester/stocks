@@ -7,18 +7,18 @@ import {tickersData} from '../../../db/data/development-data';
 import createTickersTable from '../../../controllers/create/createTickersTable';
 import populateTickersTable from '../../../controllers/populate/populateTickersTable';
 import dropTable from '../../../controllers/drop/dropTable';
-import checkTickerTradable from '../../../controllers/check/checkTickerTradable';
+import checkTickerEasyToBorrow from '../../../controllers/check/checkTickerEasyToBorrow';
 
-describe('check Ticker Tradable', () => {
-  test('returns Tradable bool if valid', async () => {
+describe('check Ticker Easy To Borrow', () => {
+  test('returns Easy To Borrow bool if valid', async () => {
     const client = await db.connect();
     try {
       client.query('BEGIN');
 
       await createTickersTable();
       await populateTickersTable(tickersData);
-      await checkTickerTradable('CAJPY').then(data => {
-        expect(data).toBe(false);
+      await checkTickerEasyToBorrow('CAJPY').then(data => {
+        expect(data).toBe(true);
       });
       await dropTable('tickers');
       client.query('ROLLBACK');
@@ -33,7 +33,7 @@ describe('check Ticker Tradable', () => {
 
       await createTickersTable();
       await populateTickersTable(tickersData);
-      await checkTickerTradable('TEST').then(data => {
+      await checkTickerEasyToBorrow('TEST').then(data => {
         expect(data).toBe(undefined);
       });
       await dropTable('tickers');

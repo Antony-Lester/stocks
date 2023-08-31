@@ -10,7 +10,7 @@ import dropTable from '../../../controllers/drop/dropTable';
 import checkTickerShortable from '../../../controllers/check/checkTickerShortable';
 
 describe('check Ticker Shortable', () => {
-  test('returns Shortable string if valid', async () => {
+  test('returns Shortable bool if valid', async () => {
     const client = await db.connect();
     try {
       client.query('BEGIN');

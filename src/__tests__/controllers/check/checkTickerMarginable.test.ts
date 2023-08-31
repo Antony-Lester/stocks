@@ -10,7 +10,7 @@ import dropTable from '../../../controllers/drop/dropTable';
 import checkTickerMarginable from '../../../controllers/check/checkTickerMarginable';
 
 describe('check Ticker Marginable', () => {
-  test('returns Marginable string if valid', async () => {
+  test('returns Marginable bool if valid', async () => {
     const client = await db.connect();
     try {
       client.query('BEGIN');
