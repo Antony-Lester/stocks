@@ -39,6 +39,9 @@ export const tickersData = [
     easy_to_borrow: false,
     fractionable: false,
     attributes: [],
+    min_order_size: 999,
+    min_trade_increment: 888,
+    price_increment: 777,
   },
   {
     id: '87d976b2-18b5-453c-8b32-c3d6bf40a7db',

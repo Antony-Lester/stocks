@@ -261,11 +261,11 @@ describe('generate ticker names', () => {
       const result = await generateTickerNames({
         sortBy: 'maintenance_margin_requirement',
       });
-      expect(result?.[0]).toBe('SIVPQ');
-      expect(result?.[1]).toBe('PKBO');
-      expect(result?.[2]).toBe('SIVBQ');
-      expect(result?.[3]).toBe('RIDEQ');
-      expect(result?.[4]).toBe('CLVSQ');
+      expect(result?.[0]).toBe('OMH');
+      expect(result?.[1]).toBe('JZXN');
+      expect(result?.[2]).toBe('SIVPQ');
+      expect(result?.[3]).toBe('PKBO');
+      expect(result?.[4]).toBe('SIVBQ');
       await dropTable('tickers');
       client.query('ROLLBACK');
     } finally {
