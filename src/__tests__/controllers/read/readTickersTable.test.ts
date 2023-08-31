@@ -4,25 +4,25 @@ import createTickersTable from '../../../controllers/create/createTickersTable';
 
 import db from '../../../db/connection';
 import populateTickersTable from '../../../controllers/populate/populateTickersTable';
-import {tickersData} from '../../../db/data/test-data/index';
+import {tickersData} from '../../../db/data/development-data/index';
 import dropTable from '../../../controllers/drop/dropTable';
 import readTickersTable from '../../../controllers/read/readTickersTable';
 const firstRow = {
-  ticker: 'AAAAA',
-  exchange: 'AAAAA',
-  class: null,
-  name: null,
-  id: '111111',
-  status: null,
-  tradable: false,
-  marginable: false,
-  shortable: false,
+  class: 'us_equity',
   easy_to_borrow: false,
+  exchange: 'OTC',
   fractionable: false,
-  maintenance_margin_requirement: null,
+  id: '5705d3df-6129-4f20-99d2-f616e1699618',
+  maintenance_margin_requirement: '100',
+  marginable: false,
   min_order_size: null,
   min_trade_increment: null,
+  name: 'LMP AUTOMOTIVE HLDGS INC Common Stock',
   price_increment: null,
+  shortable: false,
+  status: 'active',
+  ticker: 'LMPX',
+  tradable: false,
 };
 
 afterAll(async () => {
@@ -36,9 +36,11 @@ describe('read tickers table', () => {
       client.query('BEGIN');
 
       await createTickersTable();
-      await populateTickersTable([tickersData[0]]);
+      await populateTickersTable(tickersData);
       await readTickersTable().then(data => {
-        expect(data).toEqual([firstRow]);
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        expect(data[0]).toEqual(firstRow);
       });
       await dropTable('tickers');
       client.query('ROLLBACK');

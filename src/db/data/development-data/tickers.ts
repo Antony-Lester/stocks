@@ -20,6 +20,7 @@ export interface tickerDataInterface {
 export type tickersDataInterface = Array<tickerDataInterface>;
 
 export interface testDataInterface {
+  ticker: string;
   tickersData: tickersDataInterface;
 }
 

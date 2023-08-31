@@ -9,5 +9,6 @@
     "src/**/*.ts",
     "test/**/*.ts",
     "src/__tests__/controllers/create/createTickersTable.test.ts"
-  ]
+  ],
+  "exclude": ["node_modules", "babel.config.js"]
 }
