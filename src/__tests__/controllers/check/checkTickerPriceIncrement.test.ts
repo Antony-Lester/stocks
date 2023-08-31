@@ -8,18 +8,18 @@ import createTickersTable from '../../../controllers/create/createTickersTable';
 import populateTickersTable from '../../../controllers/populate/populateTickersTable';
 import dropTable from '../../../controllers/drop/dropTable';
 
-import checkTickerMinTradeIncrement from '../../../controllers/check/checkTickerMinTradeIncrement';
+import checkTickerPriceIncrement from '../../../controllers/check/checkTickerPriceIncrement';
 
-describe('check Ticker Min Trade Size', () => {
-  test('returns Min Trade Size string if valid', async () => {
+describe('check Ticker price Increment', () => {
+  test('returns price Increment string if valid', async () => {
     const client = await db.connect();
     try {
       client.query('BEGIN');
 
       await createTickersTable();
       await populateTickersTable(tickersData);
-      await checkTickerMinTradeIncrement('LMPX').then(data => {
-        expect(data).toBe(888);
+      await checkTickerPriceIncrement('LMPX').then(data => {
+        expect(data).toBe(777);
       });
       await dropTable('tickers');
       client.query('ROLLBACK');
@@ -34,7 +34,7 @@ describe('check Ticker Min Trade Size', () => {
 
       await createTickersTable();
       await populateTickersTable(tickersData);
-      await checkTickerMinTradeIncrement('TEST').then(data => {
+      await checkTickerPriceIncrement('TEST').then(data => {
         expect(data).toBe(undefined);
       });
       await dropTable('tickers');
