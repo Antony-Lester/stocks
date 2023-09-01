@@ -1,6 +1,7 @@
 import {generateTickerTimeFrameTableNames} from './generateTickerTimeFrameTableNames';
 import readTickerTimeFrameTable from '../read/readTickerTimeFrameTable';
 import generateTickerTimeFrameApiCallsInital from './generateTickerTimeFrameApiCallsInital';
+import generateTickerTimeFrameApiCallsMissing from './generateTickerTimeFrameApiCallsInitalMissing';
 
 export default async function generateTickerTimeFrameApiCalls(): Promise<
   [string, string, string][] | null
@@ -16,7 +17,12 @@ export default async function generateTickerTimeFrameApiCalls(): Promise<
     const end: string | null = null;
     const table = await readTickerTimeFrameTable(tickerTimeFrameTableName);
     if (table) {
-      //TODO: generate api calls for missing data
+      const missingDataCalls = await generateTickerTimeFrameApiCallsMissing(
+        tickerTimeFrameTableName
+      );
+      if (missingDataCalls) {
+        apiCalls.push(...missingDataCalls);
+      }
     }
     if (!start || !end) {
       const initalCalls = await generateTickerTimeFrameApiCallsInital(

@@ -27,7 +27,6 @@ describe('generate ticker time frame api calls', () => {
         }
         //--test--
         const result = await generateTickerTimeFrameApiCalls();
-        console.log(result?.sort());
         expect(Array.isArray(result)).toBe(true);
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
