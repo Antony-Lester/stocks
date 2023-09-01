@@ -4,7 +4,6 @@ import db from '../../../db/connection';
 import generateTickerTimeFrameApiCallsInitalMissing from '../../../controllers/generate/generateTickerTimeFrameApiCallsInitalMissing';
 import createTickerTimeFrameTable from '../../../controllers/create/createTickerTimeFrameTable';
 import dropTable from '../../../controllers/drop/dropTable';
-import {populate} from 'dotenv';
 import populateTickerTimeFrameTable from '../../../controllers/populate/populateTickerTimeFrameTableBase';
 
 describe('generate ticker time frame api calls inital', () => {

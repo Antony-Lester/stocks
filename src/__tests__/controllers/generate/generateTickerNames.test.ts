@@ -1,7 +1,8 @@
 // eslint-disable-next-line node/no-unpublished-import, node/no-extraneous-import
 import {describe, expect, test} from '@jest/globals';
-import {generateTickerNames} from '../../../controllers/generate/generateTickerNames';
+
 import db from '../../../db/connection';
+import {generateTickerNames} from '../../../controllers/generate/generateTickerNames';
 import createTickersTable from '../../../controllers/create/createTickersTable';
 import populateTickersTable from '../../../controllers/populate/populateTickersTable';
 import dropTable from '../../../controllers/drop/dropTable';

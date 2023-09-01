@@ -13,28 +13,33 @@
     "typescript": "~4.7.0"
   },
   "scripts": {
-    "build": "clear; npx tsc",
-    "build-watch": "clear; npx tsc -w",
-    "lint": "clear; npx prettier . --write; gts lint --fix",
-    "clean": "gts clean",
-    "compile": "tsc",
-    "fix": "clear; gts fix",
-    "prepare": "npm run lint",
-    "pretest": "npm run compile",
+    "prod-seed": " node /src/db/run-seed.ts",
+    "prod-database": " env-cmd -f .env.prod; psql -U antony -d stocks",
+
+    
+    "build": " env-cmd -f .env.test; clear; npx tsc",
+    "build-watch": " env-cmd -f .env.test; clear; npx tsc -w",
+    "lint": " env-cmd -f .env.test; clear; npx prettier . --write; gts lint --fix",
+    "clean": " env-cmd -f .env.test; gts clean",
+    "compile": " env-cmd -f .env.test; tsc",
+    "fix": " env-cmd -f .env.test; clear; gts fix",
+    "prepare": " env-cmd -f .env.test; npm run lint",
+    "pretest": " env-cmd -f .env.test; npm run compile",
     "posttest": "",
-    "test": "npx tsc; clear; npx prettier . --write; gts lint --fix; clear; jest --runInBand --no-cache --forceExit",
-    "test-watch": "jest --runInBand --watchAll --no-cache --forceExit",
-    "test-clean": "jest --clearCache; clear",
-    "test-coverage": "jest --coverage",
-    "test-debug": "node --inspect-brk node_modules/.bin/jest --runInBand --detectOpenHandles --no-cache --forceExit",
-    "test-detect": "jest --detectOpenHandles",
-    "seed": " node /src/db/run-seed.ts",
-    "database-test": "psql -U antony -d stocks_test",
-    "database": "psql -U antony -d stocks"
+
+
+    "test": "npx tsc; clear; npx prettier . --write; gts lint --fix; clear; env-cmd -f .env.test; jest --runInBand --no-cache --forceExit",
+    "test-watch": " env-cmd -f .env.test; jest --runInBand --watchAll --no-cache --forceExit",
+    "test-clean": " env-cmd -f .env.test; jest --clearCache; clear",
+    "test-coverage": " env-cmd -f .env.test; jest --coverage",
+    "test-debug": " env-cmd -f .env.test; env-cmd -f .env.test; node --inspect-brk node_modules/.bin/jest --runInBand --detectOpenHandles --no-cache --forceExit",
+    "test-detect": "env-cmd -f .env.test; jest --detectOpenHandles",
+    "test-database": " env-cmd -f .env.test; psql -U antony -d stocks_test"
   },
   "dependencies": {
     "@alpacahq/alpaca-trade-api": "^3.0.1",
     "dotenv": "^16.3.1",
+    "env-cmd": "^10.1.0",
     "moment": "^2.29.4",
     "moment-range": "^4.0.2",
     "node-pg-format": "^1.3.5",
