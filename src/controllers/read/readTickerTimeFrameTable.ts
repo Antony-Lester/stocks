@@ -1,9 +1,9 @@
 import db from '../../db/connection';
-import {tickersDataInterface} from '../../db/data/development-data';
+import {dataPointsInterface} from '../../db/data/development-data';
 
 export default async function readTickerTimeFrameTable(
   name: string
-): Promise<tickersDataInterface | null> {
+): Promise<dataPointsInterface | null> {
   try {
     return await db
       .query(`SELECT * FROM ${name}`)
