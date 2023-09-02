@@ -1,3 +1,6 @@
 build
 coverage
 .
+"rules": {
+    "@typescript-eslint/ban-ts-ignore": "off"
+  }
