@@ -8,11 +8,16 @@ export async function generateTickerTimeFrameTableNames(
     return readTickersTable().then(data =>
       data
         ?.map(item =>
-          timeFrames.map(time => `${item.exchange}_${item.ticker}_${time}`)
+          timeFrames.map(time =>
+            `${item.exchange}_${item.ticker}_${time}`.replace(/'/g, '"')
+          )
         )
         .reduce((accumulator, value) => accumulator.concat(value), [])
         .sort()
         .filter(ticker => {
+          if (ticker === 'acaq') {
+            return false;
+          }
           if (typeof filter === 'string') {
             return ticker.includes(filter);
           } else if (Array.isArray(filter)) {

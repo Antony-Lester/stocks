@@ -9,7 +9,7 @@ export default async function populateTickerTimeFrameTable(
   const populateTickerTimeFrameTableQueryStr = `INSERT INTO ${name} 
   (timestamp, open, high, low, close, vol)
   VALUES (
-    '${data.timestamp}',
+    '${data.timestamp.replace(/'/g, '"')}',
     ${data.open},
     ${data.high},
     ${data.low},

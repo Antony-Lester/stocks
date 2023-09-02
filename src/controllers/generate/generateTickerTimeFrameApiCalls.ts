@@ -33,5 +33,5 @@ export default async function generateTickerTimeFrameApiCalls(): Promise<
       }
     }
   }
-  return apiCalls.sort();
+  return apiCalls;
 }

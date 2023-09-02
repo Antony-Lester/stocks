@@ -1,5 +1,5 @@
 import {Pool} from 'pg';
-
+require('dotenv').config();
 const config = {
   user: process.env.DB_USER,
   database: process.env.DB_NAME,

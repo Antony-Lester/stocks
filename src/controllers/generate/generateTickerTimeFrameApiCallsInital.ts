@@ -1,6 +1,5 @@
 import moment from 'moment';
-import {USER_SUBSCRIBED} from '../../api/secrets';
-
+require('dotenv').config();
 const years = [2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015];
 
 const getStartDateByWeekAndYear = function (
@@ -61,7 +60,7 @@ export default async function generateTickerTimeFrameApiCallsInital(
     } else if (timeFrame === '2Hour' || timeFrame === '1Day') {
       const start = new Date(year, 0, 1).toISOString();
       const end = new Date(year, 11, 31);
-      !USER_SUBSCRIBED && year === new Date().getFullYear()
+      !process.env.USER_SUBSCRIBED && year === new Date().getFullYear()
         ? end.setMinutes(end.getMinutes() - 30)
         : null;
       apiCalls.push([name, start, end.toISOString()]);

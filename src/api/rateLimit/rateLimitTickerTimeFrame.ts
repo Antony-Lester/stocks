@@ -1,37 +1,28 @@
 //write rate limit function here
 import downloadTickerTimeFrame from '../download/downloadTickerTimeFrame';
-import {rateLimit} from '../secrets';
-
-export let apiCallsWaiting = 0;
-export let apiCallsFailed = 0;
-export let apiCallsSuccesfull = 0;
-
-export const apiCallsTotal =
-  apiCallsWaiting + apiCallsFailed + apiCallsSuccesfull;
-export const apiCallsCompleted = apiCallsFailed + apiCallsSuccesfull;
-export const apiCallsSuccessRate = apiCallsSuccesfull / apiCallsCompleted;
-export const apiCallsProgressRate = apiCallsCompleted / apiCallsTotal;
 
 export default async function rateLimitTickerTimeFrame(
-  TickerTimeFrameCalls: Array<[string, Date, Date]>
+  TickerTimeFrameCalls: Array<[string, string, string]>
 ) {
+  let apiCallsWaiting = 1;
+
   apiCallsWaiting = TickerTimeFrameCalls.length;
 
   for await (const apiCall of TickerTimeFrameCalls) {
     const [tickerTimeFrameName, start, end] = apiCall;
-    await new Promise(resolve => setTimeout(resolve, rateLimit));
-    (await downloadTickerTimeFrame(tickerTimeFrameName, start, end))
-      ? apiCallsSuccesfull++
-      : apiCallsFailed++;
+    await new Promise(resolve =>
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      setTimeout(resolve, process.env.API_RATE_LIMIT)
+    );
+    await downloadTickerTimeFrame(tickerTimeFrameName, start, end);
     apiCallsWaiting--;
     console.info(
-      'Apicalls-- Progress:',
-      apiCallsProgressRate * 100,
-      ' Success:',
-      apiCallsSuccessRate * 100,
+      'Apicalls--',
+      tickerTimeFrameName,
       ' Waiting:',
       apiCallsWaiting
     );
   }
-  console.info('Apicalls-- Completed:', apiCallsCompleted);
+  console.info('Apicalls-- Completed');
 }

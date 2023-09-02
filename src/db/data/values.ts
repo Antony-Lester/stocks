@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 export const timeFrames: Array<string> = [
   '1Min',
   '5Min',

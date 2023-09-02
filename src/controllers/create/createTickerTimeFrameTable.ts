@@ -1,7 +1,7 @@
 import db from '../../db/connection';
 
 export default async function createTickerTimeFrameTable(name: string) {
-  const query = `CREATE TABLE IF NOT EXISTS ${name} (
+  const query = `CREATE TABLE IF NOT EXISTS ${name.replace(/"/g, "'")} (
     timestamp TIMESTAMP WITH TIME ZONE PRIMARY KEY,
     open DECIMAL NOT NULL,
     low DECIMAL NOT NULL,
@@ -48,5 +48,8 @@ export default async function createTickerTimeFrameTable(name: string) {
     result_short_5 DECIMAL
     );`;
 
-  return await db.query(query).catch(e => console.warn(e));
+  return await db.query(query).catch(e => {
+    console.error(e);
+    return null;
+  });
 }

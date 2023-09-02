@@ -23,7 +23,7 @@ export default async function populateTickerTimeFrameTable(
     result_short_4 = ${data.result_short_4},
     result_short_5 = ${data.result_short_5}
   WHERE
-    timestamp = '${data.timestamp}'
+    timestamp = '${data.timestamp.replace(/'/g, '"')}'
   ;`;
   const populateTickerTimeFrameTablePromise = db
     .query(populateTickerTimeFrameTableQueryStr)

@@ -4,8 +4,8 @@ import connection from '../connection';
 
 export default async function downloadTickerTimeFrame(
   tickerTimeFrameName: string,
-  start: Date,
-  end: Date
+  startStr: string,
+  endStr: string
 ) {
   const validTimeframes = ['1Min', '5Min', '30Min', '2Hour', '1Day'];
   const validTickers = await generateTickerNames();
@@ -19,9 +19,9 @@ export default async function downloadTickerTimeFrame(
     console.warn('Invalid ticker', tickerTimeFrameName);
     return undefined;
   }
-
+  const start = new Date(startStr);
+  const end = new Date(endStr);
   const options = {start, end, timeframe, limit: 10000};
-
   const data = connection.getBarsV2(ticker, options);
   for await (const bar of data) {
     const formattedBar = {

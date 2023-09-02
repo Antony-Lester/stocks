@@ -3,7 +3,7 @@ import db from '../../db/connection';
 export default async function createTickersTable() {
   return await db
     .query(
-      `CREATE TABLE IF NOT EXISTS tickers (
+      `CREATE TABLE IF NOT EXISTS "tickers" (
         ticker TEXT NOT NULL,
         exchange TEXT NOT NULL,
         class TEXT,

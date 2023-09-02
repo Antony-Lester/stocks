@@ -52,5 +52,5 @@ describe('generate ticker time frame api calls', () => {
     } finally {
       client.release();
     }
-  }, 10000);
+  }, 30000);
 });

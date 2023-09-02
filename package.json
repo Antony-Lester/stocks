@@ -13,28 +13,26 @@
     "typescript": "~4.7.0"
   },
   "scripts": {
-    "prod-seed": " node /src/db/run-seed.ts",
-    "prod-database": " env-cmd -f .env.prod; psql -U antony -d stocks",
-
-    
-    "build": " env-cmd -f .env.test; clear; npx tsc",
-    "build-watch": " env-cmd -f .env.test; clear; npx tsc -w",
-    "lint": " env-cmd -f .env.test; clear; npx prettier . --write; gts lint --fix",
-    "clean": " env-cmd -f .env.test; gts clean",
-    "compile": " env-cmd -f .env.test; tsc",
-    "fix": " env-cmd -f .env.test; clear; gts fix",
-    "prepare": " env-cmd -f .env.test; npm run lint",
-    "pretest": " env-cmd -f .env.test; npm run compile",
+    "prod-seed": "export NODE_ENV=prod; node /src/db/run-seed.ts",
+    "prod-inital": "export NODE_ENV=prod; node build/src/run/runSetupAndInitalDownload.js",
+    "prod-database": "export NODE_ENV=prod; psql -U antony -d stocks",
+    "build": "export NODE_ENV=test; clear; npx tsc",
+    "build-watch": "export NODE_ENV=test; clear; npx tsc -w",
+    "lint": "export NODE_ENV=test; clear; npx prettier . --write; gts lint --fix",
+    "clean": "export NODE_ENV=test; gts clean",
+    "compile": "export NODE_ENV=test; tsc",
+    "fix": "export NODE_ENV=test; clear; gts fix",
+    "prepare": "export NODE_ENV=test; npm run lint",
+    "pretest": "export NODE_ENV=test;npm run compile; gts fix; npx prettier . --write; gts lint --fix; clear;",
     "posttest": "",
-
-
-    "test": "npx tsc; clear; npx prettier . --write; gts lint --fix; clear; env-cmd -f .env.test; jest --runInBand --no-cache --forceExit",
-    "test-watch": " env-cmd -f .env.test; jest --runInBand --watchAll --no-cache --forceExit",
-    "test-clean": " env-cmd -f .env.test; jest --clearCache; clear",
-    "test-coverage": " env-cmd -f .env.test; jest --coverage",
-    "test-debug": " env-cmd -f .env.test; env-cmd -f .env.test; node --inspect-brk node_modules/.bin/jest --runInBand --detectOpenHandles --no-cache --forceExit",
-    "test-detect": "env-cmd -f .env.test; jest --detectOpenHandles",
-    "test-database": " env-cmd -f .env.test; psql -U antony -d stocks_test"
+    "test": "export NODE_ENV=test; jest --runInBand --no-cache --forceExit",
+    "test-watch": "export NODE_ENV=test; jest --runInBand --watchAll --no-cache --forceExit",
+    "test-clean": " export NODE_ENV=test; jest --clearCache; clear",
+    "test-coverage": "export NODE_ENV=test; jest --coverage",
+    "test-debug": "export NODE_ENV=test; env-cmd -f .env.test; node --inspect-brk node_modules/.bin/jest --runInBand --detectOpenHandles --no-cache --forceExit",
+    "test-detect": "export NODE_ENV=test; jest --detectOpenHandles",
+    "test-database": "export NODE_ENV=test; psql -U antony -d stocks_test",
+    "test-script": "bash testScript.sh"
   },
   "dependencies": {
     "@alpacahq/alpaca-trade-api": "^3.0.1",

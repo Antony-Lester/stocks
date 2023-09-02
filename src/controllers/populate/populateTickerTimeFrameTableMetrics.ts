@@ -31,7 +31,7 @@ export default async function populateTickerTimeFrameTable(
     metric_td_s = ${data.metric_td_s},
     metric_td_r = ${data.metric_td_r}
   WHERE
-    timestamp = '${data.timestamp}'
+    timestamp = '${data.timestamp.replace(/'/g, '"')}'
   ;`;
   const populateTickerTimeFrameTablePromise = db
     .query(populateTickerTimeFrameTableQueryStr)

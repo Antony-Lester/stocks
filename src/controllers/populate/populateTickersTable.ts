@@ -89,13 +89,16 @@ export default async function populateTickersTable(
       ) {
         data.price_increment = null;
       }
+      if (data.status === 'inactive') {
+        return null;
+      }
       return [
-        data.symbol,
-        data.exchange,
-        data.class,
-        data.name,
-        data.id,
-        data.status,
+        data.symbol.replace(/'/g, '"'),
+        data.exchange.replace(/'/g, '"'),
+        data.class?.replace(/'/g, '"'),
+        data.name?.replace(/'/g, '"'),
+        data.id.replace(/'/g, '"'),
+        data.status?.replace(/'/g, '"'),
         data.tradable,
         data.marginable,
         data.shortable,
