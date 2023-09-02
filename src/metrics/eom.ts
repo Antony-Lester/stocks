@@ -1,4 +1,4 @@
-export default function (
+export default function calculateEOM(
   high: number[],
   low: number[],
   volume: number[],
