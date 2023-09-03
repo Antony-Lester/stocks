@@ -94,17 +94,19 @@ export default async function generateTickerTimeFrameMetrics(
     metric_td_r: metric_td.R,
     metric_td_s: metric_td.S,
   };
+  /*
   for (const [key, value] of Object.entries(metrics)) {
     if (typeof value === 'number') {
       if (!isFinite(value) || value < 0 || value > 1 || isNaN(value)) {
-        console.warn(`generateTickerTimeFrameMetrics 
+        console.warn(`generateTickerTimeFrameMetrics
                 Metric Out Of Range:
-                ${name}: ${timestamp} 
+                ${name}: ${timestamp}
                 ${key}: ${value}`);
         return null;
       }
     }
   }
+  */
   return metrics;
 }
 

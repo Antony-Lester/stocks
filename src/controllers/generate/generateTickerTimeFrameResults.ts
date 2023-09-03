@@ -10,20 +10,6 @@ export default async function generateTickerTimeFrameResults(
 ): Promise<dataPointResultType | null> {
   const [data0Bar, data1Bar, data2Bar, data3Bar, data4Bar, data5Bar] = data;
 
-  for (let i = 0; i < data.length; i++) {
-    for (const [key, value] of Object.entries(data[i])) {
-      if (typeof value === 'number' || value === null) {
-        if (!isFinite(value) || value < 0 || value > 1 || isNaN(value)) {
-          console.warn(`generateTickerTimeFrameResult 
-                    Input Out Of Range:
-                    ${name}: ${data[i].timestamp} 
-                    ${key}: ${value}`);
-          return null;
-        }
-      }
-    }
-  }
-
   const result = {
     name,
     timestamp: data0Bar.timestamp,
