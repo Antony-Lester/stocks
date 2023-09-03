@@ -112,25 +112,7 @@ const columnTypes = [
   'numeric',
   'numeric',
   'numeric',
-<<<<<<< HEAD
-  'numeric',
-  'numeric',
-  'numeric',
-  'numeric',
-  'numeric',
-  'numeric',
-  'numeric',
-  'numeric',
-  'numeric',
-  'numeric',
-  'numeric',
-  'numeric',
-  'numeric',
-  'numeric',
-  'numeric',
-  'numeric',
-=======
->>>>>>> results
+
 ];
 const columnNulable = [
   'NO',
