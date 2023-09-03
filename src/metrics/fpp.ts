@@ -1,10 +1,19 @@
-export default function (
+export interface FPP {
+  S3: number;
+  S2: number;
+  S1: number;
+  R1: number;
+  R2: number;
+  R3: number;
+}
+
+export default function calculateFPP(
   high: number,
   low: number,
   close: number,
   diff = 1,
   off = 0
-): object {
+): FPP {
   const getPercentageChange = (x: number, y: number) => {
     const result = ((x - y) / x) * diff + off;
     return isFinite(result) ? result : NaN;

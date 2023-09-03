@@ -1,4 +1,4 @@
-export default function time(dateStamp: string): Number {
+export default function calculateTime(dateStamp: string): number {
   const date = new Date(dateStamp);
   const hours = date.getHours();
   const minutes = date.getMinutes();

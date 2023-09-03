@@ -112,6 +112,7 @@ const columnTypes = [
   'numeric',
   'numeric',
   'numeric',
+<<<<<<< HEAD
   'numeric',
   'numeric',
   'numeric',
@@ -128,6 +129,8 @@ const columnTypes = [
   'numeric',
   'numeric',
   'numeric',
+=======
+>>>>>>> results
 ];
 const columnNulable = [
   'NO',
@@ -182,6 +185,7 @@ const columnNulable = [
   'YES',
   'YES',
   'YES',
+<<<<<<< HEAD
   'YES',
   'YES',
   'YES',
@@ -194,6 +198,8 @@ const columnNulable = [
   'YES',
   'YES',
   'YES',
+=======
+>>>>>>> results
 ];
 describe('create ticker time frame table', () => {
   test('creates a table named correctly with colums', async () => {
