@@ -1,13 +1,22 @@
 export const dataPointMetric = {
+  name: 'test',
   timestamp: '2020-01-01T01:01:01.001Z',
-  metric_adx: 0.0,
-  metric_di_minus: 0.045454545,
-  metric_di_plus: 0.090909091,
-  metric_eom: 0.136363635,
-  metric_mfi: 0.18181818,
-  metric_rsi: 0.227272725,
-  metric_sar: 0.27272727,
-  metric_sc: 0.318181815,
+  metric_adx_a: 0.0,
+  metric_adx_b: 0.0,
+  metric_di_minus_a: 0.045454545,
+  metric_di_minus_b: 0.045454545,
+  metric_di_plus_a: 0.090909091,
+  metric_di_plus_b: 0.090909091,
+  metric_eom_a: 0.136363635,
+  metric_eom_b: 0.136363635,
+  metric_mfi_a: 0.18181818,
+  metric_mfi_b: 0.18181818,
+  metric_rsi_a: 0.227272725,
+  metric_rsi_b: 0.227272725,
+  metric_sar_a: 0.27272727,
+  metric_sar_b: 0.27272727,
+  metric_sc_a: 0.318181815,
+  metric_sc_b: 0.318181815,
   metric_time: 0.36363636,
   metric_cp_s3: 0.409090905,
   metric_cp_s2: 0.45454545,
@@ -21,19 +30,28 @@ export const dataPointMetric = {
   metric_fpp_r1: 0.81818181,
   metric_fpp_r2: 0.863636355,
   metric_fpp_r3: 0.9090909,
-  metric_td_s: 0.954545445,
-  metric_td_r: 1.0,
+  metric_td_r: 0.954545445,
+  metric_td_s: 1.0,
 };
 export interface dataPointMetricType {
+  name: string;
   timestamp: string;
-  metric_adx?: number;
-  metric_di_minus?: number;
-  metric_di_plus?: number;
-  metric_eom?: number;
-  metric_mfi?: number;
-  metric_rsi?: number;
-  metric_sar?: number;
-  metric_sc?: number;
+  metric_adx_a?: number;
+  metric_adx_b?: number;
+  metric_di_minus_a?: number;
+  metric_di_minus_b?: number;
+  metric_di_plus_a?: number;
+  metric_di_plus_b?: number;
+  metric_eom_a?: number;
+  metric_eom_b?: number;
+  metric_mfi_a?: number;
+  metric_mfi_b?: number;
+  metric_rsi_a?: number;
+  metric_rsi_b?: number;
+  metric_sar_a?: number;
+  metric_sar_b?: number;
+  metric_sc_a?: number;
+  metric_sc_b?: number;
   metric_time?: number;
   metric_cp_s3?: number;
   metric_cp_s2?: number;

@@ -1,4 +1,5 @@
 export const dataPointResult = {
+  name: 'test',
   timestamp: '2020-01-01T01:01:01.001Z',
   result_long_1: 1.0,
   result_long_2: 0.333333329,
@@ -18,6 +19,7 @@ export const dataPointResult = {
 };
 
 export interface dataPointResultType {
+  name: string;
   timestamp: string;
   result_long_1?: number;
   result_long_2?: number;

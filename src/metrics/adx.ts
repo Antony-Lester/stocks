@@ -1,7 +1,7 @@
 import plusDI from './di+';
 import minusDI from './di-';
 
-export default function (
+export default function calculateADX(
   high: number[],
   low: number[],
   close: number[],
