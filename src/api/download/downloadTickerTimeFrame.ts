@@ -22,17 +22,48 @@ export default async function downloadTickerTimeFrame(
   const start = new Date(startStr);
   const end = new Date(endStr);
   const options = {start, end, timeframe, limit: 10000};
-  const data = connection.getBarsV2(ticker, options);
-  for await (const bar of data) {
-    const formattedBar = {
-      timestamp: bar.Timestamp,
-      open: bar.OpenPrice,
-      high: bar.HighPrice,
-      low: bar.LowPrice,
-      close: bar.ClosePrice,
-      vol: bar.Volume,
-    };
-    populateTickerTimeFrameTableBase(tickerTimeFrameName, formattedBar);
+  try {
+    const data = connection.getBarsV2(ticker, options);
+    for await (const bar of data) {
+      const formattedBar = {
+        timestamp: bar.Timestamp,
+        open: bar.OpenPrice,
+        high: bar.HighPrice,
+        low: bar.LowPrice,
+        close: bar.ClosePrice,
+        vol: bar.Volume,
+      };
+      populateTickerTimeFrameTableBase(tickerTimeFrameName, formattedBar);
+    }
+  } catch (e: any) {
+    if (e.code && e.code === undefined) {
+      console.warn('Unknown error caught on download retrying in 5 Seconds', e);
+      setTimeout(async () => {
+        try {
+          const data = connection.getBarsV2(ticker, options);
+          for await (const bar of data) {
+            const formattedBar = {
+              timestamp: bar.Timestamp,
+              open: bar.OpenPrice,
+              high: bar.HighPrice,
+              low: bar.LowPrice,
+              close: bar.ClosePrice,
+              vol: bar.Volume,
+            };
+            populateTickerTimeFrameTableBase(tickerTimeFrameName, formattedBar);
+          }
+        } catch (e: any) {
+          console.warn(
+            'Unknown Download error ABORTED:',
+            tickerTimeFrameName,
+            start,
+            end,
+            e
+          );
+          return false;
+        }
+      }, 5000);
+    }
   }
   return true;
 }
