@@ -1,4 +1,4 @@
-export default function (close: number[], diff = 1, off = 0) {
+export default function calculateRSI(close: number[], diff = 1, off = 0) {
   let avgUpwardChange = 0;
   for (let i = 1; i < close.length; i++) {
     avgUpwardChange += Math.max(0, close[i] - close[i - 1]);

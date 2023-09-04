@@ -1,7 +1,7 @@
 {
   "devDependencies": {
     "@types/msgpack5": "^3.4.3",
-    "@types/node": "^14.11.2",
+    "@types/node": "^14.18.58",
     "@types/pg": "^8.10.2",
     "@types/pg-format": "^1.0.2",
     "@types/readable-stream": "^4.0.2",
@@ -13,6 +13,7 @@
     "typescript": "~4.7.0"
   },
   "scripts": {
+    "seed-dev": "psql -h localhost -U stocks-test -d stocks-test -a -f /mnt/md0/code/stocks-mk2/src/setup-dev.sql;",
     "prod-seed": "export NODE_ENV=prod; node /src/db/run-seed.ts",
     "prod-inital": "export NODE_ENV=prod; node build/src/run/runSetupAndInitalDownload.js",
     "prod-database": "export NODE_ENV=prod; psql -U antony -d stocks",
@@ -25,23 +26,25 @@
     "prepare": "export NODE_ENV=test; npm run lint",
     "pretest": "export NODE_ENV=test;npm run compile; gts fix; npx prettier . --write; gts lint --fix; clear;",
     "posttest": "",
-    "test": "export NODE_ENV=test; jest --runInBand --no-cache --forceExit",
-    "test-watch": "export NODE_ENV=test; jest --runInBand --watchAll --no-cache --forceExit",
+    "test": "export NODE_ENV=test; clear; npx tsc; jest --runInBand --no-cache --forceExit",
+    "test-watch": "export NODE_ENV=test;  clear; npx tsc; jest --runInBand --watchAll --no-cache --forceExit",
     "test-clean": " export NODE_ENV=test; jest --clearCache; clear",
     "test-coverage": "export NODE_ENV=test; jest --coverage",
     "test-debug": "export NODE_ENV=test; env-cmd -f .env.test; node --inspect-brk node_modules/.bin/jest --runInBand --detectOpenHandles --no-cache --forceExit",
     "test-detect": "export NODE_ENV=test; jest --detectOpenHandles",
     "test-database": "export NODE_ENV=test; psql -U antony -d stocks_test",
     "test-script": "bash testScript.sh"
+    
   },
   "dependencies": {
     "@alpacahq/alpaca-trade-api": "^3.0.1",
+    "alpaca": "^1.5.27",
     "dotenv": "^16.3.1",
     "env-cmd": "^10.1.0",
     "moment": "^2.29.4",
     "moment-range": "^4.0.2",
     "node-pg-format": "^1.3.5",
-    "pg": "^8.11.1",
+    "pg": "^8.11.3",
     "pg-format": "^1.0.4"
   }
 }

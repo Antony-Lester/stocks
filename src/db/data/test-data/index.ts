@@ -16,6 +16,7 @@ import {
   dataPointBaseType,
   dataPointInterface,
   dataPointsInterface,
+  dataPointBaseTestArray,
 } from './dataPoint/base';
 import {dataPointMetric, dataPointMetricType} from './dataPoint/metric';
 import {dataPointResult, dataPointResultType} from './dataPoint/result';
@@ -29,4 +30,5 @@ export {
   dataPointResultType,
   dataPointInterface,
   dataPointsInterface,
+  dataPointBaseTestArray,
 };

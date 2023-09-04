@@ -1,4 +1,4 @@
-export default function (
+export default function calculateDIplus(
   high: number[],
   low: number[],
   close: number[],

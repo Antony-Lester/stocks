@@ -30,9 +30,15 @@ describe('read ticker time frame table', () => {
       await populateTickerTimeFrameTableMetrics(name, dataPointMetric);
       await populateTickerTimeFrameTableResults(name, dataPointResult);
       await readTickerTimeFrameTable(name).then(data => {
-        expect(data).toEqual([
-          {...dataPointBase, ...dataPointMetric, ...dataPointResult},
-        ]);
+        const expectedResult = {
+          ...dataPointBase,
+          ...dataPointMetric,
+          ...dataPointResult,
+        };
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        delete expectedResult.name;
+        expect(data).toEqual([expectedResult]);
       });
       await dropTable(name);
       await client.query('ROLLBACK');

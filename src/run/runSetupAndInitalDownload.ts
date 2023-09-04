@@ -32,6 +32,7 @@ export default async function runSetupAndInitalDownload() {
   } else {
     console.warn('No timeFrameTableNames @runSetupAndInitalDownload');
   }
+  console.info(`Inital download complete for all tickers.`);
 }
 
 runSetupAndInitalDownload();

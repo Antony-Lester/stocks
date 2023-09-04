@@ -1,4 +1,4 @@
-export default function (
+export default function calculateDIminus(
   high: number[],
   low: number[],
   close: number[],
