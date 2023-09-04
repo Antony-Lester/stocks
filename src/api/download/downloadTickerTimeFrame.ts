@@ -35,6 +35,7 @@ export default async function downloadTickerTimeFrame(
       };
       populateTickerTimeFrameTableBase(tickerTimeFrameName, formattedBar);
     }
+    return true;
   } catch (e: any) {
     if (e.code && e.code === undefined) {
       console.warn('Unknown error caught on download retrying in 5 Seconds', e);
@@ -52,6 +53,7 @@ export default async function downloadTickerTimeFrame(
             };
             populateTickerTimeFrameTableBase(tickerTimeFrameName, formattedBar);
           }
+          return true;
         } catch (e: any) {
           console.warn(
             'Unknown Download error ABORTED:',
