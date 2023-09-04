@@ -1,33 +1,23 @@
-# stocks
+### stocks
 
 Typescript stocks downloader with metrics processing for ML
 
 # env setup (dev)
-$ sudo -u postgres psql 
-(psql)
-$ CREATEUSER -P stocks-test;
-(Enter PASSWORD FOR the NEW ROLE: password)
 
-$ CREATEDB -O stocks-test stocks-test;
+$ sudo -u postgres psql
+postgres=# create database stockstest;
+postgres=# create user stockstest with encrypted password 'password';
+postgres=# CREATE DATABASE stockstest;
+postgres=# grant all privileges on database stockstest to stockstest;
 
-$ ALTER USER stocks-test SET search_path='stocks-test, "$user", public';
-
-$ ALTER DEFAULT PRIVILEGES IN SCHEMA stocks-test GRANT ALL
-ON TABLES TO ADMIN;
-
-$ npm run setup-dev
+$ npm run setup-test
 
 # env setup (prod)
-$ sudo -u postgres psql 
-(psql)
-$ CREATEUSER -P stocks;
-(Enter PASSWORD FOR the NEW ROLE: password)
 
-$ CREATEDB -O stocks stocks;
+$ sudo -u postgres psql
+postgres=# create database stocks;
+postgres=# create user stocks with encrypted password 'password';
+postgres=# CREATE DATABASE stocks;
+postgres=# grant all privileges on database stocks to stocks;
 
-$ ALTER USER stocks SET search_path='stocks, "$user", public';
-
-$ ALTER DEFAULT PRIVILEGES IN SCHEMA stocks GRANT ALL
-ON TABLES TO ADMIN;
-
-$ npm run setup-dev
+$ npm run setup-prod

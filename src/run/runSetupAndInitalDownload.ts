@@ -1,5 +1,6 @@
 import downloadTickers from '../api/download/downloadTickers';
 import rateLimitTickerTimeFrame from '../api/rateLimit/rateLimitTickerTimeFrame';
+import checkNodeProd from '../controllers/check/checkNodeProd';
 import createTickerTimeFrameTable from '../controllers/create/createTickerTimeFrameTable';
 import createTickersTable from '../controllers/create/createTickersTable';
 import generateTickerTimeFrameApiCallsInitalMissing from '../controllers/generate/generateTickerTimeFrameApiCallsInitalMissing';
@@ -7,6 +8,7 @@ import {generateTickerTimeFrameTableNames} from '../controllers/generate/generat
 import populateTickersTable from '../controllers/populate/populateTickersTable';
 
 export default async function runSetupAndInitalDownload() {
+  checkNodeProd();
   await createTickersTable();
   await populateTickersTable(await downloadTickers());
   console.info('Tickers download & save complete.');
@@ -32,7 +34,7 @@ export default async function runSetupAndInitalDownload() {
   } else {
     console.warn('No timeFrameTableNames @runSetupAndInitalDownload');
   }
-  console.info(`Inital download complete for all tickers.`);
+  console.info('Inital download complete for all tickers.');
 }
 
 runSetupAndInitalDownload();

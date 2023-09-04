@@ -13,8 +13,8 @@
     "typescript": "~4.7.0"
   },
   "scripts": {
-    "seed-dev": "psql -h localhost -U stocks-test -d stocks-test -a -f /mnt/md0/code/stocks-mk2/src/setup-dev.sql;",
-    "prod-seed": "export NODE_ENV=prod; node /src/db/run-seed.ts",
+    "seed-test": "psql -h localhost -p 5432 -U postgres  -a -f /mnt/md0/code/stocks-mk2/src/db/setup-test.sql;",
+    "seed-prod": "psql -h localhost -p 5432 -U postgres -a -f /mnt/md0/code/stocks-mk2/src/db/setup-prod.sql;",
     "prod-inital": "export NODE_ENV=prod; node build/src/run/runSetupAndInitalDownload.js",
     "prod-database": "export NODE_ENV=prod; psql -U antony -d stocks",
     "build": "export NODE_ENV=test; clear; npx tsc",
@@ -32,9 +32,7 @@
     "test-coverage": "export NODE_ENV=test; jest --coverage",
     "test-debug": "export NODE_ENV=test; env-cmd -f .env.test; node --inspect-brk node_modules/.bin/jest --runInBand --detectOpenHandles --no-cache --forceExit",
     "test-detect": "export NODE_ENV=test; jest --detectOpenHandles",
-    "test-database": "export NODE_ENV=test; psql -U antony -d stocks_test",
-    "test-script": "bash testScript.sh"
-    
+    "test-database": "export NODE_ENV=test; psql -U antony -d stocks_test"
   },
   "dependencies": {
     "@alpacahq/alpaca-trade-api": "^3.0.1",
