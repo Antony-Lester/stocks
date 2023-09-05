@@ -48,7 +48,7 @@ export async function generateTickerNames(params?: {
           );
         }
       }
-      return tickers;
+      return tickers?.filter(ticker => !ticker.ticker?.includes('.'));
     })
     .then(tickers => {
       if (tickers) {

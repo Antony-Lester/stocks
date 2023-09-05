@@ -23,7 +23,7 @@
 
     "build": "gts fix; npx tsc",
 
-    "start": "node build/src/index.js"
+    "start": "npm run build; clear; node build/src/index.js"
   },
   "dependencies": {
     "@alpacahq/alpaca-trade-api": "^3.0.1",

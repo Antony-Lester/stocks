@@ -1037,7 +1037,7 @@ export const tickersData = [
     id: '546c6409-4536-41b0-a427-c6a313838d28',
     class: 'us_equity',
     exchange: 'OTC',
-    symbol: 'SIVPQ',
+    symbol: 'SIVPQ.U',
     name: 'SVB FINL GROUP Depositary Shs each representing a 1/40th interest in a share of 5.25% Fixed-Rate Non-Cumulative Perpetual Preferred Stock, Series A',
     status: 'active',
     tradable: false,

@@ -40,7 +40,7 @@ describe('generate ticker names', () => {
       const result = await generateTickerNames();
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      expect(result.length).toBe(68);
+      expect(result.length).toBe(67);
       await dropTable('tickers');
       client.query('ROLLBACK');
     } finally {
@@ -170,7 +170,7 @@ describe('generate ticker names', () => {
       // @ts-ignore
       await populateTickersTable(tickersData);
       const result = await generateTickerNames({status: 'active'});
-      expect(result?.length).toBe(68);
+      expect(result?.length).toBe(67);
       await dropTable('tickers');
       client.query('ROLLBACK');
     } finally {
@@ -264,9 +264,9 @@ describe('generate ticker names', () => {
       });
       expect(result?.[0]).toBe('OMH');
       expect(result?.[1]).toBe('JZXN');
-      expect(result?.[2]).toBe('SIVPQ');
-      expect(result?.[3]).toBe('PKBO');
-      expect(result?.[4]).toBe('SIVBQ');
+      expect(result?.[2]).toBe('PKBO');
+      expect(result?.[3]).toBe('SIVBQ');
+      expect(result?.[4]).toBe('RIDEQ');
       await dropTable('tickers');
       client.query('ROLLBACK');
     } finally {
@@ -282,11 +282,10 @@ describe('generate ticker names', () => {
       // @ts-ignore
       await populateTickersTable(tickersData);
       const result = await generateTickerNames({sortBy: 'min_order_size'});
-      expect(result?.[0]).toBe('SIVPQ');
-      expect(result?.[1]).toBe('PKBO');
-      expect(result?.[2]).toBe('SIVBQ');
-      expect(result?.[3]).toBe('RIDEQ');
-      expect(result?.[4]).toBe('CLVSQ');
+      expect(result?.[0]).toBe('PKBO');
+      expect(result?.[1]).toBe('SIVBQ');
+      expect(result?.[2]).toBe('RIDEQ');
+      expect(result?.[3]).toBe('CLVSQ');
       await dropTable('tickers');
       client.query('ROLLBACK');
     } finally {
