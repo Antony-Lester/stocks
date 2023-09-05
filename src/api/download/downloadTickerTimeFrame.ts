@@ -42,7 +42,10 @@ export default async function downloadTickerTimeFrame(
       console.warn('Unknown error caught on download retrying in 5 Seconds', e);
       setTimeout(async () => {
         try {
-          const data = connection.getBarsV2(ticker, options);
+          const data = connection.getBarsV2(
+            ticker.replace(/FORWARDSLASH/g, '/').replace(/'FULLSTOP'/g, '.'),
+            options
+          );
           for await (const bar of data) {
             const formattedBar = {
               timestamp: bar.Timestamp,

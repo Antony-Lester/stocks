@@ -11,8 +11,8 @@ export async function generateTickerTimeFrameTableNames(
           timeFrames.map(
             time =>
               `${item.exchange}_${item?.ticker
-                ?.replace(/\//g, 'XXX')
-                .replace(/\./g, 'ZZZ')}_${time}`
+                ?.replace(/\//g, 'FORWARDSLASH')
+                .replace(/\./g, 'FULLSTOP')}_${time}`
           )
         )
         .reduce((accumulator, value) => accumulator.concat(value), [])
