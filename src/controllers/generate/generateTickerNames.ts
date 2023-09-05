@@ -48,7 +48,17 @@ export async function generateTickerNames(params?: {
           );
         }
       }
-      return tickers?.filter(ticker => !ticker.ticker?.includes('.'));
+      //filter tickers by tickes.ticker if string contains /
+      tickers = tickers?.filter(ticker => !ticker?.ticker?.indexOf('.'));
+      tickers = tickers?.map(ticker => {
+        return {
+          ...ticker,
+          ticker: ticker?.ticker
+            ?.replace(/\//g, 'fslash')
+            .replace(/\./g, 'dot'),
+        };
+      });
+      return tickers;
     })
     .then(tickers => {
       if (tickers) {

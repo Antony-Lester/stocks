@@ -8,7 +8,12 @@ export async function generateTickerTimeFrameTableNames(
     return readTickersTable().then(data =>
       data
         ?.map(item =>
-          timeFrames.map(time => `${item.exchange}_${item.ticker}_${time}`)
+          timeFrames.map(
+            time =>
+              `${item.exchange}_${item?.ticker
+                ?.replace(/\//g, 'XXX')
+                .replace(/\./g, 'ZZZ')}_${time}`
+          )
         )
         .reduce((accumulator, value) => accumulator.concat(value), [])
         .filter(ticker => !ticker?.includes('.'))

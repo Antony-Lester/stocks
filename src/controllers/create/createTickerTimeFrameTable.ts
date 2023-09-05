@@ -56,8 +56,11 @@ export default async function createTickerTimeFrameTable(name: string) {
     result_short_5 DECIMAL
     );`;
 
-  return await db.query(query).catch(e => {
-    console.error(e);
-    return null;
-  });
+  return await db
+    .query(query)
+    .then(_ => console.info(`Table ${name} created.`))
+    .catch(e => {
+      console.error(name + '      ' + e);
+      return null;
+    });
 }
