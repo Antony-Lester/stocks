@@ -13,29 +13,21 @@
     "typescript": "~4.7.0"
   },
   "scripts": {
-    "seed-test": "psql -h localhost -p 5432 -U postgres  -a -f /mnt/md0/code/stocks-mk2/src/db/setup-test.sql;",
+    "test-database": "psql -U postgres -d stockstest",
+    "prod-database": "psql -U postgres -d stocks",
     "seed-prod": "psql -h localhost -p 5432 -U postgres -a -f /mnt/md0/code/stocks-mk2/src/db/setup-prod.sql;",
-    "prod-inital": "export NODE_ENV=prod; node build/src/run/runSetupAndInitalDownload.js",
-    "prod-database": "export NODE_ENV=prod; psql -U antony -d stocks",
-
-    "build": "gts clean; npx tsc",
-  
-    "lint": "clear; gts fix; npx prettier --fix; gts lint --fix",
-
-    "pretest": "export NODE_ENV=test; npm run lint",
-    "test": "jest --runInBand",
-    "test-watch": "jest --runInBand --no-cache --forceExit",
-    "test-clean": " export NODE_ENV=test; jest --clearCache; clear",
-    "test-coverage": "export NODE_ENV=test; jest --coverage",
-    "test-debug": "export NODE_ENV=test; env-cmd -f .env.test; node --inspect-brk node_modules/.bin/jest --runInBand --no-cache --forceExit",
     
-    "test-database": "export NODE_ENV=test; psql -U antony -d stocks_test"
+    "pretest": "psql -h localhost -p 5432 -U postgres  -a -f /mnt/md0/code/stocks-mk2/src/db/setup-test.sql; gts fix; npx tsc; clear;",
+    "test": "jest --runInBand",
+    "test-watch": "jest --runInBand --no-cache --forceExit --watch",
+
+    "build": "gts fix; npx tsc",
+
+    "start": "node build/src/index.js"
   },
   "dependencies": {
     "@alpacahq/alpaca-trade-api": "^3.0.1",
     "alpaca": "^1.5.27",
-    "dotenv": "^16.3.1",
-    "env-cmd": "^10.1.0",
     "moment": "^2.29.4",
     "moment-range": "^4.0.2",
     "node-pg-format": "^1.3.5",

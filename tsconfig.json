@@ -9,6 +9,6 @@
   "include": [
     "src/**/*.ts",
     "setupJestTests.ts"
-  ],
+, "src/index.ts"  ],
   "exclude": ["node_modules", "babel.config.js", "**/*.test.ts"]
 }

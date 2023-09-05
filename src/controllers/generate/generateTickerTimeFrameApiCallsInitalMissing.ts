@@ -17,7 +17,7 @@ export default async function generateTickerTimeFrameApiCallsInitalMissing(
   }
   const table = await readTickerTimeFrameTable(name);
   if (!table) {
-    console.warn('No table @ApiCallsMissing', name);
+    console.error('No table @ApiCallsMissing', name);
     return null;
   }
   const actualTimeStamps = table.map(row => row.timestamp);

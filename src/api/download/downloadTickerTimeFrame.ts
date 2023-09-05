@@ -36,6 +36,7 @@ export default async function downloadTickerTimeFrame(
       populateTickerTimeFrameTableBase(tickerTimeFrameName, formattedBar);
     }
     return true;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
     if (e.code && e.code === undefined) {
       console.warn('Unknown error caught on download retrying in 5 Seconds', e);
@@ -54,6 +55,7 @@ export default async function downloadTickerTimeFrame(
             populateTickerTimeFrameTableBase(tickerTimeFrameName, formattedBar);
           }
           return true;
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (e: any) {
           console.warn(
             'Unknown Download error ABORTED:',
