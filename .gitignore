@@ -4,5 +4,4 @@ coverage/
 .env*
 .vscode
 .idea
-.NOTES-TODO
-```
+TODO.txt
