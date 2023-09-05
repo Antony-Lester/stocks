@@ -11,6 +11,7 @@ export async function generateTickerTimeFrameTableNames(
           timeFrames.map(time => `${item.exchange}_${item.ticker}_${time}`)
         )
         .reduce((accumulator, value) => accumulator.concat(value), [])
+        .filter(ticker => !ticker?.includes('.'))
         .sort()
         .filter(ticker => {
           if (typeof filter === 'string') {

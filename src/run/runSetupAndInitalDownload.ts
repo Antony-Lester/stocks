@@ -11,8 +11,7 @@ export default async function runSetupAndInitalDownload() {
   await populateTickersTable(await downloadTickers());
   console.info('Tickers download & save complete.');
   const timeFrameTableNames = await generateTickerTimeFrameTableNames();
-  console.log(timeFrameTableNames);
-  /*
+
   if (timeFrameTableNames) {
     for await (const timeFrameTableName of timeFrameTableNames) {
       await createTickerTimeFrameTable(timeFrameTableName);
@@ -35,5 +34,4 @@ export default async function runSetupAndInitalDownload() {
     console.warn('No timeFrameTableNames @runSetupAndInitalDownload');
   }
   console.info('Inital download complete for all tickers.');
-  */
 }
