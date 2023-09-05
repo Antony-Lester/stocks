@@ -1,4 +1,5 @@
 //write rate limit function here
+import secrets from '../../secrets';
 import downloadTickerTimeFrame from '../download/downloadTickerTimeFrame';
 
 export default async function rateLimitTickerTimeFrame(
@@ -13,7 +14,7 @@ export default async function rateLimitTickerTimeFrame(
     await new Promise(resolve =>
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      setTimeout(resolve, process.env.API_RATE_LIMIT)
+      setTimeout(resolve, secrets.API_RATE_LIMIT)
     );
     await downloadTickerTimeFrame(tickerTimeFrameName, start, end);
     apiCallsWaiting--;

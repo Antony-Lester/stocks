@@ -15,10 +15,11 @@ export default async function downloadTickerTimeFrame(
     console.warn('Invalid timeframe', tickerTimeFrameName);
     return undefined;
   }
+  /*
   if (Array.isArray(validTickers) && !validTickers.includes(ticker)) {
     console.warn('Invalid ticker', tickerTimeFrameName);
     return undefined;
-  }
+  }*/
   const start = new Date(startStr);
   const end = new Date(endStr);
   const options = {start, end, timeframe, limit: 10000};

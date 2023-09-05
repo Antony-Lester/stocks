@@ -3,7 +3,7 @@ import {dataPointsInterface} from '../../db/data/development-data';
 
 export default async function readTickerTimeFrameTable(
   name: string
-): Promise<dataPointsInterface | null> {
+): Promise<dataPointsInterface | [] | null> {
   try {
     return await db
       .query(`SELECT * FROM ${name}`)
@@ -21,7 +21,7 @@ export default async function readTickerTimeFrameTable(
           }
           return data;
         } else {
-          return null;
+          return [];
         }
       });
   } catch {

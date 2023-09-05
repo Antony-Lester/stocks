@@ -20,7 +20,7 @@ export default async function generateTickerTimeFrameApiCallsInitalMissing(
     console.error('No table @ApiCallsMissing', name);
     return null;
   }
-  const actualTimeStamps = table.map(row => row.timestamp);
+  const actualTimeStamps = table.map(row => row?.timestamp);
 
   for (const expectedTimeStamp of expectedTimeStamps) {
     const [name, start, end] = expectedTimeStamp;

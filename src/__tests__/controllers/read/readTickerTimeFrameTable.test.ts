@@ -62,7 +62,7 @@ describe('read ticker time frame table', () => {
       client.release();
     }
   }, 10000);
-  test('returns null if table is empty', async () => {
+  test('returns [] if table is empty', async () => {
     const client = await db.connect();
     try {
       client.query('BEGIN');
@@ -70,7 +70,7 @@ describe('read ticker time frame table', () => {
       await readTickerTimeFrameTable(name).then(data => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        expect(data).toBe(null);
+        expect(data).toEqual([]);
       });
       await dropTable('tickers');
       await client.query('ROLLBACK');

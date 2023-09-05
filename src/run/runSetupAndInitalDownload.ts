@@ -17,17 +17,12 @@ export default async function runSetupAndInitalDownload() {
       await createTickerTimeFrameTable(timeFrameTableName);
     }
     for await (const timeFrameTableName of timeFrameTableNames) {
-      do {
-        const apiCallsMissing =
-          await generateTickerTimeFrameApiCallsInitalMissing(
-            timeFrameTableName
-          );
-        if (apiCallsMissing) {
-          await rateLimitTickerTimeFrame(apiCallsMissing);
-        }
-      } while (
-        await generateTickerTimeFrameApiCallsInitalMissing(timeFrameTableName)
-      );
+      const apiCallsMissing =
+        await generateTickerTimeFrameApiCallsInitalMissing(timeFrameTableName);
+      if (apiCallsMissing) {
+        await rateLimitTickerTimeFrame(apiCallsMissing);
+      }
+
       console.info(`Inital download for ${timeFrameTableName} complete.`);
     }
   } else {
