@@ -8,8 +8,7 @@
   },
   "include": [
     "src/**/*.ts",
-    "test/**/*.ts",
-    "src/__tests__/controllers/create/createTickersTable.test.ts"
+    "setupJestTests.ts"
   ],
-  "exclude": ["node_modules", "babel.config.js"]
+  "exclude": ["node_modules", "babel.config.js", "**/*.test.ts"]
 }

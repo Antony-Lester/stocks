@@ -6,10 +6,7 @@ import * as path from 'path';
 import getDotEnvPath from '../controllers/check/checkDotEnvPath';
 
 dotenv.config({
-  path: path.resolve(
-    process.cwd(),
-    getDotEnvPath(process.env.NODE_ENV?.toUpperCase())
-  ),
+  path: path.resolve(process.cwd(), getDotEnvPath(process.env.NODE_ENV)),
 });
 
 const config = {

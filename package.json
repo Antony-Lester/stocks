@@ -17,21 +17,18 @@
     "seed-prod": "psql -h localhost -p 5432 -U postgres -a -f /mnt/md0/code/stocks-mk2/src/db/setup-prod.sql;",
     "prod-inital": "export NODE_ENV=prod; node build/src/run/runSetupAndInitalDownload.js",
     "prod-database": "export NODE_ENV=prod; psql -U antony -d stocks",
-    "build": "export NODE_ENV=test; clear; npx tsc",
-    "build-watch": "export NODE_ENV=test; clear; npx tsc -w",
-    "lint": "export NODE_ENV=test; clear; npx prettier . --write; gts lint --fix",
-    "clean": "export NODE_ENV=test; gts clean",
-    "compile": "export NODE_ENV=test; tsc",
-    "fix": "export NODE_ENV=test; clear; gts fix",
-    "prepare": "export NODE_ENV=test; npm run lint",
-    "pretest": "export NODE_ENV=test;npm run compile; gts fix; npx prettier . --write; gts lint --fix; clear;",
-    "posttest": "",
-    "test": "export NODE_ENV=test; clear; npx tsc; jest --runInBand --no-cache --forceExit",
-    "test-watch": "export NODE_ENV=test;  clear; npx tsc; jest --runInBand --watchAll --no-cache --forceExit",
+
+    "build": "gts clean; npx tsc",
+  
+    "lint": "clear; gts fix; npx prettier --fix; gts lint --fix",
+
+    "pretest": "export NODE_ENV=test; npm run lint",
+    "test": "jest --runInBand",
+    "test-watch": "jest --runInBand --no-cache --forceExit",
     "test-clean": " export NODE_ENV=test; jest --clearCache; clear",
     "test-coverage": "export NODE_ENV=test; jest --coverage",
-    "test-debug": "export NODE_ENV=test; env-cmd -f .env.test; node --inspect-brk node_modules/.bin/jest --runInBand --detectOpenHandles --no-cache --forceExit",
-    "test-detect": "export NODE_ENV=test; jest --detectOpenHandles",
+    "test-debug": "export NODE_ENV=test; env-cmd -f .env.test; node --inspect-brk node_modules/.bin/jest --runInBand --no-cache --forceExit",
+    
     "test-database": "export NODE_ENV=test; psql -U antony -d stocks_test"
   },
   "dependencies": {

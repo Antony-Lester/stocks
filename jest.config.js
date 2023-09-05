@@ -3,5 +3,4 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
   testPathIgnorePatterns: ['.d.ts', '.d.js', '.js'],
-  globalSetup: './src/__tests__/setup.ts',
 };
