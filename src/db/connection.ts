@@ -1,5 +1,17 @@
 import {Pool} from 'pg';
-require('dotenv').config();
+
+import * as dotenv from 'dotenv';
+import * as process from 'process';
+import * as path from 'path';
+import getDotEnvPath from '../controllers/check/checkDotEnvPath';
+
+dotenv.config({
+  path: path.resolve(
+    process.cwd(),
+    getDotEnvPath(process.env.NODE_ENV?.toUpperCase())
+  ),
+});
+
 const config = {
   user: process.env.DB_USER,
   database: process.env.DB_NAME,
